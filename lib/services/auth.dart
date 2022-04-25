@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart' as Dio;
 import 'package:flutter/cupertino.dart';
 import 'package:test/models/user.dart';
@@ -12,23 +10,17 @@ class Auth extends ChangeNotifier {
   late User _user;
   late String _token;
 
-  String fou = "email already exist";
-
-  late String test;
-
   final storage = new FlutterSecureStorage();
 
   bool get authenticated => _isLoggedIn;
   User get user => _user;
 
   void login({required Map creds}) async {
-    print(creds);
-
     try {
-      Dio.Response response = await dio().post('/auth/login', data: creds);
-      // print(response.data.toString());
+      Dio.Response response = await dio().post('/sanctum/token', data: creds);
+      print(response.data.toString());
       String token = response.data.toString();
-      tryToken(token: token);
+      this.tryToken(token: token);
       _isLoggedIn = true;
       notifyListeners();
     } catch (e) {
@@ -41,8 +33,7 @@ class Auth extends ChangeNotifier {
       return;
     } else {
       try {
-        print("onest la " + token);
-        Dio.Response response = await dio().get('/auth/user-profile',
+        Dio.Response response = await dio().get('/user',
             options: Dio.Options(headers: {'Authorization': 'Bearer $token'}));
         this._isLoggedIn = true;
         this._user = User.fromJson(response.data);
@@ -72,7 +63,7 @@ class Auth extends ChangeNotifier {
   }
 
   void cleanUp() async {
-    //  this._user = null;
+    //this._user = null;
 
     this._isLoggedIn = false;
     //   this._token = null;
@@ -88,9 +79,5 @@ class Auth extends ChangeNotifier {
     } catch (e) {
       print(e);
     }
-  }
-
-  getTest() {
-    return test;
   }
 }

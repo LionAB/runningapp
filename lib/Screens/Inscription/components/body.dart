@@ -16,7 +16,9 @@ class body extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final myControllerEmail = TextEditingController();
+    final myControllerName = TextEditingController();
     final myControllerMdp = TextEditingController();
+    final myControllerMdpConfirmation = TextEditingController();
     return background(
       child: Form(
         key: _formKey,
@@ -25,7 +27,11 @@ class body extends StatelessWidget {
           children: <Widget>[
             Image.asset(
               "assets/images/sport centre.jpg",
-              height: size.height * 0.3,
+              height: size.height * 0.2,
+            ),
+            RoundedInputField(
+              hintText: "Name",
+              myController: myControllerName,
             ),
             RoundedInputField(
               hintText: "Email",
@@ -34,10 +40,14 @@ class body extends StatelessWidget {
             RoundedPasswordField(
               myController: myControllerMdp,
             ),
+            RoundedPasswordField(
+              myController: myControllerMdpConfirmation,
+            ),
             RoundedButton(
               text: "Inscription",
               onPressed: () {
                 Map creds = {
+                  'name': myControllerName.text,
                   'email': myControllerEmail.text,
                   'password': myControllerMdp.text,
                   'password_confirmation': myControllerMdp.text,

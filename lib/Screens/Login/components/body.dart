@@ -56,6 +56,7 @@ class body extends StatelessWidget {
               Map creds = {
                 'email': myControllerEmail.text,
                 'password': myControllerMdp.text,
+                'device_name': 'mobile',
               };
               if (_formKey.currentState!.validate()) {
                 Provider.of<Auth>(context, listen: false).login(creds: creds);

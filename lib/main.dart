@@ -6,8 +6,11 @@ import 'package:test/services/auth.dart';
 
 void main() {
   runApp(MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context) => Auth())],
-      child: MyApp()));
+    providers: [
+      ChangeNotifierProvider(create: (context) => Auth()),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',
-      theme: ThemeData(
+      theme: ThemeData( 
         primaryColor: primaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),

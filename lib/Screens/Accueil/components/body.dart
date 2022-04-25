@@ -42,6 +42,7 @@ class body extends StatelessWidget {
               ),
             );
           },
+          
         ),
         RoundedButton(
           text: "INSCRIPTION",

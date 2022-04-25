@@ -40,7 +40,7 @@ class _RoundedInputField extends State<RoundedInputField> {
             Icons.person,
             color: primaryColor,
           ),
-          hintText: "Email",
+          hintText: widget.hintText,
           border: InputBorder.none,
         ),
         controller: widget.myController,
