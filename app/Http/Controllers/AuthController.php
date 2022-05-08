@@ -11,22 +11,13 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    /**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
-    }
 
     /**
      * Get a JWT via given credentials.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(Request $request)
+   /* public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
@@ -100,8 +91,9 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function userProfile()
-    {
+    public function login()
+    {   
+        print(response()->json(auth()->user()));
         return response()->json(auth()->user());
     }
 
