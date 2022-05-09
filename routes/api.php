@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RunController;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -66,3 +67,9 @@ Route::prefix('user')->group(function () {
     Route::get('/{id}',[ UserController::class, 'get']);
     Route::put('/{id}',[ UserController::class, 'update']);
 });
+//run
+Route::get('/runs',[Runcontroller::class,'getAllRun']);//Toutes les courses de l'application
+Route::get('/{user_id}/runs' , [RunController::class,'runList']); //prendre toutes les courses propre à un utlisateur courses propres 
+Route::post('/{user_id}/run',[RunController::class,'createRun']);
+Route::delete('/run/{id}', [RunController::class,'delete']);
+
